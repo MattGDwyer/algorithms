@@ -1,6 +1,5 @@
 var rockPaperScissors = function (n) {
 
-  // TODO: your solution here
   var results = [];
   var letters = ['R', 'P', 'S'];
   if (n === 0) {
