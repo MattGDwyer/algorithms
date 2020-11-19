@@ -13,38 +13,42 @@
 
 function sym(args) {
 
-  // if args.length = 1
+
   if (arguments.length === 1) {
-  // return arguments
-  return arguments;
-  }
-
-  // declare a variable symResults to a copy of arguments
-  var symResults = Array.from(arguments);
-
-  // declare a variable symIntegers to an empty array
-  var symIntegers = [];
-  // loop over arguments at 0
-  for (var i = 0; i < symResults[0].length; i++) {
-    // call indexof on each index of symResults at 0 and 1 and compare
-    if (symResults[1].indexOf(symResults[0][i]) === -1){
-
-
-      // you need to check if any number in sym results at 1 is unique to symResults at 0.
-
-    // if neither contains,
-    // add add it to symIntegers;
-    symIntegers.push(symResults[0][i]);
-    }
-
-  }
-  // remove symResults at 0 and 1
-  // add symIntegers to front of symResults
-  symResults = symResults.splice(0, 2, symIntegers);
-  console.log(symResults);
-  sym(symResults);
-  // recurse passing symResults as args
-  // implementation
+    args[0].sort(function(a, b) {return a - b});
+    console.log('console:', args[0])
+    return args[0];
 }
 
-sym([1, 2, 3], [5, 2, 1, 4]);
+
+
+var symResults = [];
+for (var l = 0; l < arguments.length; l++) {
+    symResults[l] = arguments[l];
+}
+
+
+var symIntegers = [];
+
+for (var i = 0; i < symResults[0].length; i++) {
+
+  if (symResults[1].indexOf(symResults[0][i]) === -1){
+
+
+  symIntegers.push(symResults[0][i]);
+  }
+
+}
+for (var j = 0; j < symResults[1].length; j++) {
+    if (symResults[0].indexOf(symResults[1][j]) === -1) {
+        symIntegers.push(symResults[1][j]);
+    }
+}
+
+
+symResults.splice(0, 2, symIntegers);
+sym(symResults);
+
+}
+
+sym([1, 7, 3], [5, 2, 1, 4]);
