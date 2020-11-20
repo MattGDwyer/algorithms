@@ -12,43 +12,32 @@
 //  difference. The returned array must contain only unique values (no duplicates).
 
 function sym(args) {
+  var copyOfArguments = Array.prototype.slice.call(arguments);
+  copyOfArguments[0].sort( (a, b) => a - b);
 
+  if (copyOfArguments.length > 1 && copyOfArguments[1] !== undefined) {
+    // make a variable binaryComparisonResults = []
+    var binaryComparisonResults = [];
+      // loop over each array inside copyOfArguments;
+      copyOfArguments[0].forEach(function(value) {
+        if (binaryComparisonResults.indexOf(value) === -1 && copyOfArguments[1].indexOf(value) === -1) {
+          binaryComparisonResults.push(value);
+        }
+      });
 
-  if (arguments.length === 1) {
-    args[0].sort(function(a, b) {return a - b});
-    console.log('console:', args[0])
-    return args[0];
-}
+      copyOfArguments[1].forEach(function(value) {
+        if (binaryComparisonResults.indexOf(value) === -1 && copyOfArguments[0].indexOf(value) === -1) {
+          binaryComparisonResults.push(value);
+        }
+      });
 
+    copyOfArguments.splice(0, 2, binaryComparisonResults);
 
+      sym(copyOfArguments[0], copyOfArguments[1]);
 
-var symResults = [];
-for (var l = 0; l < arguments.length; l++) {
-    symResults[l] = arguments[l];
-}
-
-
-var symIntegers = [];
-
-for (var i = 0; i < symResults[0].length; i++) {
-
-  if (symResults[1].indexOf(symResults[0][i]) === -1){
-
-
-  symIntegers.push(symResults[0][i]);
   }
 
-}
-for (var j = 0; j < symResults[1].length; j++) {
-    if (symResults[0].indexOf(symResults[1][j]) === -1) {
-        symIntegers.push(symResults[1][j]);
-    }
+  return binaryComparisonResults;
 }
 
-
-symResults.splice(0, 2, symIntegers);
-sym(symResults);
-
-}
-
-sym([1, 7, 3], [5, 2, 1, 4]);
+sym([1, 2, 5], [2, 3, 5], [3, 4, 5])
