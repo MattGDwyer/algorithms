@@ -14,11 +14,10 @@
 function sym(args) {
   var copyOfArguments = Array.prototype.slice.call(arguments);
   copyOfArguments[0].sort( (a, b) => a - b);
+//   debugger;
 
-  if (copyOfArguments.length > 1 && copyOfArguments[1] !== undefined) {
-    // make a variable binaryComparisonResults = []
+  if (copyOfArguments.length > 1) {
     var binaryComparisonResults = [];
-      // loop over each array inside copyOfArguments;
       copyOfArguments[0].forEach(function(value) {
         if (binaryComparisonResults.indexOf(value) === -1 && copyOfArguments[1].indexOf(value) === -1) {
           binaryComparisonResults.push(value);
@@ -30,14 +29,24 @@ function sym(args) {
           binaryComparisonResults.push(value);
         }
       });
-
     copyOfArguments.splice(0, 2, binaryComparisonResults);
 
+    if (copyOfArguments.length > 1) {
+
+
+
       sym(copyOfArguments[0], copyOfArguments[1]);
+    } else {
+        console.log('inside conditional:')
+        return binaryComparisonResults;
+    }
 
   }
-
+  console.log('outside conditional:')
   return binaryComparisonResults;
 }
 
-sym([1, 2, 5], [2, 3, 5], [3, 4, 5])
+sym([1, 2, 5], [2, 3, 5], [3, 4, 5]);
+
+
+
