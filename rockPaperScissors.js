@@ -1,3 +1,4 @@
+// a simple rock paper scissors function
 var rockPaperScissors = function (n) {
 
   var results = [];

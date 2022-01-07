@@ -8,8 +8,7 @@ function reverseString(inputString) {
 
   return reversedLetters.join('');
 }
-var x = "Legolas";
-console.log(reverseString(x));
+
 var test = 'I had a pizza Pocket!'
 console.log(reverseString(test));
 
