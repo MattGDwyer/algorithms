@@ -13,7 +13,6 @@ function quickSort(array) {
   }
 
   let pivot = copyOfNumbers[0];
-
   let lesser = [];
   let greater = [];
 
